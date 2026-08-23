@@ -18,6 +18,9 @@ x402-signal-reference/
 *-short-term-*.html
 *-long-term-*.html
 
-# draft icons
+# draft / duplicate assets (canonical copies live in public/ and src-tauri/icons/)
 /icon.png
 /icon2.png
+/icon512.png
+/IP1 Av.svg
+/InferProof One Wordmark SVG wide.svg
