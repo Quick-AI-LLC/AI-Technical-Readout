@@ -1,40 +1,37 @@
 # AI Technical Readout
 
-Local LLM readout of technical indicators. A Quick AI LLC FOSS tool. It sits next to the InferProof One ecosystem; it is not a miner.
+A small desktop app. You run it on your PC. Paste an [OpenRouter](https://openrouter.ai/) key, name an asset, pick short-term (4h) or long-term (daily), and get a markdown readout of the technicals — plus a counter-read and a short definition of what actually moved the call.
 
-You run it on your machine. You bring an [OpenRouter](https://openrouter.ai/) API key. Data comes from Binance public USDT klines. Inference is yours.
+It is **not** a website and **not** a hosted API. Nothing is stored on our servers. The window starts compact and grows when the sheet is ready.
+
+Quick AI LLC FOSS. It sits next to [InferProof One](https://inferproof.one); it is not a miner.
 
 None of this is financial advice.
 
-## Run
+## Use
 
-Requires Node 20+.
+1. Open the app.
+2. Paste an OpenRouter API key (once). It stays in `%APPDATA%\ai-technical-readout\` on Windows.
+3. Look up a Binance USDT pair and confirm it.
+4. Short term or long term.
+5. Read the sheet. Export `.md` or `.html` if you want a copy.
+
+Settings: rotate or clear the key, Infer / Dark / Light, Grok (default) / DeepSeek / GLM.
+
+A packaged Windows build is the distribution we want people on. That wrap is next.
+
+## From source
+
+For now, while the desktop wrap is in progress:
 
 ```
 npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173`.
+Then open `http://127.0.0.1:5173`. Node 20+. This is how you hack on it, not how end users are meant to live in it.
 
-Production-style (build UI, one process):
-
-```
-npm run start:prod
-```
-
-Then open `http://127.0.0.1:8787`.
-
-The API key, theme, and model choice are stored only in a local config file (`%APPDATA%\ai-technical-readout\config.json` on Windows). Analyses are not saved unless you export them.
-
-## Use
-
-1. Paste an OpenRouter key.
-2. Look up an asset, confirm the USDT pair.
-3. Short term (4h) or Long term (daily).
-4. Read the markdown sheet. Export `.md` or `.html` if you want a copy.
-
-Settings: rotate or clear the key, Infer / Dark / Light, Grok (default) / DeepSeek / GLM.
+`npm run start:prod` builds the UI and serves it from `http://127.0.0.1:8787`.
 
 ## License
 
