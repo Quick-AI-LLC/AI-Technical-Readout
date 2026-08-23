@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Technical Readout</title>
+    <link rel="icon" href="/icon.png" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="top">
+        <div class="brand">AI Technical Readout</div>
+        <button type="button" id="btn-settings" class="ghost" hidden>Settings</button>
+      </header>
+
+      <section id="onboard" class="panel compact" hidden>
+        <p class="lede">Paste an OpenRouter API key to run local inference on this machine. The key stays here.</p>
+        <label class="field">
+          <span>OpenRouter API key</span>
+          <input id="onboard-key" type="password" autocomplete="off" spellcheck="false" placeholder="sk-or-…" />
+        </label>
+        <button type="button" id="btn-save-key" class="primary block">Save key</button>
+        <p class="nfa">None of this is financial advice.</p>
+        <p id="onboard-err" class="err" hidden></p>
+      </section>
+
+      <section id="work" hidden>
+        <div class="panel compact" id="request">
+          <label class="field">
+            <span>Asset</span>
+            <div class="asset-row">
+              <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="ETH, BTC, SOL…" />
+              <button type="button" id="btn-lookup" class="ghost">Look up</button>
+            </div>
+          </label>
+          <div id="matches" class="matches" hidden></div>
+          <div class="row">
+            <div class="toggle" role="group" aria-label="Timeframe">
+              <button type="button" data-mode="short">Short term</button>
+              <button type="button" data-mode="long" class="on">Long term</button>
+            </div>
+            <button type="button" id="btn-analyze" class="primary" disabled>Analyze</button>
+          </div>
+          <p id="request-err" class="err" hidden></p>
+        </div>
+
+        <div id="analyzing" class="analyzing" hidden>
+          <img src="/ip1-mark.png" alt="" class="pulse-mark" />
+          <p id="cta" class="cta"></p>
+          <button type="button" id="btn-cancel" class="ghost cancel">Cancel</button>
+        </div>
+
+        <article id="readout" class="panel readout" hidden>
+          <div class="readout-actions">
+            <button type="button" id="btn-md" class="ghost">Save Markdown</button>
+            <button type="button" id="btn-html" class="ghost">Save HTML</button>
+            <button type="button" id="btn-again" class="ghost">New readout</button>
+          </div>
+          <div id="md" class="md"></div>
+          <p class="nfa">None of this is financial advice.</p>
+        </article>
+      </section>
+
+      <div id="settings" class="modal" hidden>
+        <div class="sheet">
+          <h2>Settings</h2>
+          <label class="field">
+            <span>OpenRouter API key</span>
+            <input id="set-key" type="password" autocomplete="off" spellcheck="false" placeholder="Replace key…" />
+          </label>
+          <div class="row tight">
+            <button type="button" id="btn-rotate" class="primary">Save key</button>
+            <button type="button" id="btn-clear-key" class="ghost">Clear key</button>
+          </div>
+          <p id="set-err" class="err" hidden></p>
+          <fieldset class="choices">
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="infer" /> Infer</label>
+            <label><input type="radio" name="theme" value="dark" /> Dark</label>
+            <label><input type="radio" name="theme" value="light" /> Light</label>
+          </fieldset>
+          <fieldset class="choices">
+            <legend>Model</legend>
+            <label><input type="radio" name="model" value="grok" /> Grok</label>
+            <label><input type="radio" name="model" value="deepseek" /> DeepSeek</label>
+            <label><input type="radio" name="model" value="glm" /> GLM</label>
+          </fieldset>
+          <button type="button" id="btn-close-settings" class="ghost">Close</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/ui/main.ts"></script>
+  </body>
+</html>

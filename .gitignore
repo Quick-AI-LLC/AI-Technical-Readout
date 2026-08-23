@@ -1,0 +1,22 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.env
+.env.*
+
+# internal notes
+IP1-Tooling-Scope.md
+
+# reference stack, not this app
+x402-signal-reference/
+
+# local test exports
+*-short-term-*.md
+*-long-term-*.md
+*-short-term-*.html
+*-long-term-*.html
+
+# draft icons
+/icon.png
+/icon2.png
