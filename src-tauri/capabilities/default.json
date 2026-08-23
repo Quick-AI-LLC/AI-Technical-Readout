@@ -6,6 +6,16 @@
     "core:default",
     "core:window:allow-set-size",
     "opener:default",
+    "dialog:default",
+    {
+      "identifier": "fs:allow-write-text-file",
+      "allow": [
+        { "path": "$HOME/**" },
+        { "path": "$DOCUMENT/**" },
+        { "path": "$DOWNLOAD/**" },
+        { "path": "$DESKTOP/**" }
+      ]
+    },
     {
       "identifier": "http:default",
       "allow": [

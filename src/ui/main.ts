@@ -186,7 +186,24 @@ function setWide(on: boolean) {
   void resizeWindow(on);
 }
 
-function download(filename: string, contents: string, type: string) {
+async function download(filename: string, contents: string, type: string) {
+  showErr("save-err", null);
+  if (isDesktop()) {
+    try {
+      const { save } = await import("@tauri-apps/plugin-dialog");
+      const { writeTextFile } = await import("@tauri-apps/plugin-fs");
+      const html = filename.endsWith(".html");
+      const path = await save({
+        defaultPath: filename,
+        filters: [{ name: html ? "HTML" : "Markdown", extensions: [html ? "html" : "md"] }],
+      });
+      if (!path) return;
+      await writeTextFile(path, contents);
+    } catch (err) {
+      showErr("save-err", err instanceof Error ? err.message : "Save failed");
+    }
+    return;
+  }
   const blob = new Blob([contents], { type });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -347,10 +364,10 @@ $<HTMLButtonElement>("btn-again").addEventListener("click", () => {
 });
 $<HTMLButtonElement>("btn-md").addEventListener("click", () => {
   const extra = `\n\n---\nNone of this is financial advice.\n\nAI Technical Readout · [InferProof One](https://inferproof.one)\n`;
-  download(`${fileBase()}.md`, lastMarkdown + extra, "text/markdown");
+  void download(`${fileBase()}.md`, lastMarkdown + extra, "text/markdown");
 });
 $<HTMLButtonElement>("btn-html").addEventListener("click", () => {
-  download(`${fileBase()}.html`, htmlExport(lastMarkdown), "text/html");
+  void download(`${fileBase()}.html`, htmlExport(lastMarkdown), "text/html");
 });
 
 void loadConfig().catch((err) => {
