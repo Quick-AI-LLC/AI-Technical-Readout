@@ -18,20 +18,18 @@ None of this is financial advice.
 
 Settings: rotate or clear the key, Infer / Dark / Light, Grok (default) / DeepSeek / GLM.
 
-A packaged Windows build is the distribution we want people on. That wrap is next.
+The Windows installer is built on GitHub Actions (not on a personal PC) and attached to [Releases](https://github.com/Quick-AI-LLC/AI-Technical-Readout/releases). Run **Windows installer** from the Actions tab, or push a `v*` tag, then publish the draft.
 
 ## From source
 
-For now, while the desktop wrap is in progress:
+Contributors only. Node 20+.
 
 ```
 npm install
 npm run dev
 ```
 
-Then open `http://127.0.0.1:5173`. Node 20+. This is how you hack on it, not how end users are meant to live in it.
-
-`npm run start:prod` builds the UI and serves it from `http://127.0.0.1:8787`.
+Open `http://127.0.0.1:5173`. Do not compile the desktop wrapper on a daily-driver Windows machine — unsigned Cargo intermediates trip Defender heuristics (Evo-gen and friends).
 
 ## License
 

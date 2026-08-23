@@ -8,16 +8,22 @@
     "dev": "concurrently -k \"tsx watch src/server/index.ts\" \"vite\"",
     "build": "vite build",
     "start": "tsx src/server/index.ts",
-    "start:prod": "vite build && tsx src/server/index.ts"
+    "start:prod": "vite build && tsx src/server/index.ts",
+    "tauri": "tauri",
+    "desktop": "tauri build"
   },
   "engines": {
     "node": ">=20"
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-http": "^2",
+    "@tauri-apps/plugin-opener": "^2",
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2",
     "@fontsource/ibm-plex-mono": "^5.2.5",
     "@fontsource/ibm-plex-sans": "^5.2.5",
     "@types/express": "^4.17.21",

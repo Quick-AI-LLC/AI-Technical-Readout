@@ -1,0 +1,17 @@
+{
+  "identifier": "default",
+  "description": "Main window",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-set-size",
+    "opener:default",
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "https://data-api.binance.vision/**" },
+        { "url": "https://openrouter.ai/**" }
+      ]
+    }
+  ]
+}

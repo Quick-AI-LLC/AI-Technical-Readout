@@ -1,5 +1,6 @@
 import { marked } from "marked";
 import "./styles.css";
+import { desktopApi, isDesktop, resizeWindow } from "./desktop";
 
 type Match = { pair: string; base: string; quote: string };
 type Config = {
@@ -54,6 +55,15 @@ let ctaI = 0;
 let analyzeAbort: AbortController | null = null;
 
 async function api(path: string, init?: RequestInit) {
+  if (isDesktop()) {
+    try {
+      return (await desktopApi(path, init)) as Record<string, unknown>;
+    } catch (err) {
+      const name = err instanceof Error ? err.name : "";
+      if (name === "AbortError") throw new Error("Canceled");
+      throw err;
+    }
+  }
   let res: Response;
   try {
     res = await fetch(path, {
@@ -173,6 +183,7 @@ function fileBase(): string {
 
 function setWide(on: boolean) {
   document.getElementById("app")?.classList.toggle("wide", on);
+  void resizeWindow(on);
 }
 
 function download(filename: string, contents: string, type: string) {
